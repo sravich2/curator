@@ -1,8 +1,17 @@
 class AccountController < ApplicationController
 
-  def populate_articles
-
+  def populate_articles #(user_id = User.current_user.id)
+    client = get_client(1)
+    User.find(id = 1).subscriptions.each do |subscription|
+      subscription_id = subscription['subscription_id']
+      client.stream_entries_contents(subscription_id).to_hash['items'].each do |article|
+        article_data = parse_article(article)
+        article_data['subscription_id'] = subscription_id
+        Article.create(article_data)
+      end
+    end
   end
+  helper_method :populate_articles
 
   def populate_subscriptions # (user_id = current_user_id)
     client = get_client(1)
@@ -29,6 +38,11 @@ class AccountController < ApplicationController
   end
 
   def parse_article(article_hash)
-    
+    article_data = Hash.new
+    article_data['article_id'] = article_hash['id']
+    article_data['title'] = article_hash['title']
+    article_data['content'] = article_hash['summary']
+    article_data['url'] = article_hash['originId']
+    article_data
   end
 end
