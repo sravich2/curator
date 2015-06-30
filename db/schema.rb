@@ -11,34 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630115927) do
+ActiveRecord::Schema.define(version: 20150630150219) do
 
   create_table "articles", force: :cascade do |t|
-    t.string   "article_id"
+    t.string   "feedly_id"
     t.string   "title"
     t.text     "content"
     t.string   "url"
-    t.integer  "subscription_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "feed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "feeds", force: :cascade do |t|
+    t.string   "website"
+    t.integer  "subscribers"
+    t.string   "feedly_id"
+    t.string   "topics"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.string   "website"
-    t.integer  "subscribers"
-    t.string   "subscription_id"
-    t.string   "topics"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.integer  "feed_id"
+    t.string   "feed_feedly_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  create_table "subscriptions_users", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "subscription_id"
-  end
-
-  add_index "subscriptions_users", ["subscription_id"], name: "index_subscriptions_users_on_subscription_id"
-  add_index "subscriptions_users", ["user_id"], name: "index_subscriptions_users_on_user_id"
+  add_index "subscriptions", ["feed_id"], name: "index_subscriptions_on_feed_id"
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.text     "oauth_token"
