@@ -6,6 +6,7 @@ class CreateSubscriptions < ActiveRecord::Migration
       t.integer :subscribers
       t.string :subscription_id
       t.string :topics, array: true
+      t.belongs_to :User
 
       t.timestamps null: false
     end
