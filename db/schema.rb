@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150630060254) do
     t.string   "website"
     t.integer  "subscribers"
     t.string   "topics"
-    t.integer  "User_id"
+    t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
