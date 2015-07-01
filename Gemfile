@@ -44,5 +44,6 @@ group :development, :test do
   gem 'feedlr'
   gem "ruby-readability", :require => 'readability'
   gem 'open_calais'
+  gem 'fastimage'
 end
 

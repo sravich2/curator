@@ -1,13 +1,12 @@
 require 'open-uri'
 
-
 module AccountHelper
   def sandbox
 
-    source = open('http://www.theverge.com/2015/6/30/8870415/spaceX-explosion-NASA-America-space-future').read
+    source = open(Feed.find(id = 18).articles.first.url).read
 
     # Preview display of web page (DONT REMOVE THIS BLOCK)
-    # content = Readability::Document.new(source)
+    # content = Readability::Document.new(source).content
     # content.prepare_candidates
     # content.html.to_s.html_safe
 
