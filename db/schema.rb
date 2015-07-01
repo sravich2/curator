@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150630150219) do
     t.integer  "subscribers"
     t.string   "feedly_id"
     t.string   "topics"
+    t.string   "title"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

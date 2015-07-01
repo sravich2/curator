@@ -2,6 +2,7 @@ class AccountController < ApplicationController
 
   def populate_articles (user_id = 1)
     client = get_client(user_id)
+    pp client.stream_entries_contents(Feed.find(id = 20).feedly_id).to_hash['items'].at(0)
     current_user = User.find(id = user_id)
     current_user.feeds.each do |feed|
       feed_id = feed['feedly_id']
@@ -19,6 +20,7 @@ class AccountController < ApplicationController
 
   def populate_feeds (user_id = 1)
     client = get_client(1)
+    client.user_subscriptions.at(5).pretty_print_inspect
     current_user = User.find(user_id)
     client.user_subscriptions.each do |feed|
       unless current_user.feeds.where(:feedly_id => feed['id']).exists?
@@ -38,6 +40,7 @@ class AccountController < ApplicationController
     feed_data['website'] = feedlr_collection['website']
     feed_data['subscribers'] = feedlr_collection['subscribers'].to_i
     feed_data['topics'] = feedlr_collection['topics']
+    feed_data['title'] = feedlr_collection['title']
     # feed_data['user_id'] = current_user_id
     # feed_data['user_id'] = 1
     feed_data

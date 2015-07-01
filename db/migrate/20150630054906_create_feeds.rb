@@ -5,6 +5,7 @@ class CreateFeeds < ActiveRecord::Migration
       t.integer :subscribers
       t.string :feedly_id
       t.string :topics, array: true
+      t.string :title
 
       t.timestamps null: false
     end
