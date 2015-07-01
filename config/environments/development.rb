@@ -38,4 +38,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  OpenCalais.configure do |c|
+    c.api_key = "n4YxlI24pKYCxGk7wECH6RipcHxRpieT"
+  end
 end

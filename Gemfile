@@ -43,5 +43,6 @@ group :development, :test do
   gem 'spring'
   gem 'feedlr'
   gem "ruby-readability", :require => 'readability'
+  gem 'open_calais'
 end
 
