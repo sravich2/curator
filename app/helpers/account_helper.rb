@@ -1,7 +1,6 @@
 require 'feedlr'
 module AccountHelper
   def sandbox
-    populate_feeds
-    # User.find(id = 1).feeds.pretty_print_inspect
+    populate_articles
   end
 end

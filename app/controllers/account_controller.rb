@@ -1,28 +1,30 @@
 class AccountController < ApplicationController
 
-  def populate_articles #(user_id = User.current_user.id)
-    client = get_client(1)
-    User.find(id = 1).feeds.each do |feed|
-      feed_id = feed['feed_id']
+  def populate_articles (user_id = 1)
+    client = get_client(user_id)
+    current_user = User.find(id = user_id)
+    current_user.feeds.each do |feed|
+      feed_id = feed['feedly_id']
       client.stream_entries_contents(feed_id).to_hash['items'].each do |article|
-        # unless feed.articles.where(:article_id => article['id']).exists?
+        unless feed.articles.where(:feedly_id => article['id']).exists?
           article_data = parse_article(article)
           article_data['feed_id'] = feed_id
           feed.articles.create(article_data)
-        # end
+        end
       end
     end
   end
 
   helper_method :populate_articles
 
-  def populate_feeds # (user_id = current_user_id)
+  def populate_feeds (user_id = 1)
     client = get_client(1)
+    current_user = User.find(user_id)
     client.user_subscriptions.each do |feed|
-      # unless User.find(id = 1).feeds.where(feed_id = feed['id']).exists?
+      unless current_user.feeds.where(:feedly_id => feed['id']).exists?
         feed_data = parse_feed(feed)
-        User.find(id = 1).feeds.create(feed_data)
-      # end
+        current_user.feeds.create(feed_data)
+      end
     end
   end
 
