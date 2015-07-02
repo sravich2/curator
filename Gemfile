@@ -45,5 +45,6 @@ group :development, :test do
   gem "ruby-readability", :require => 'readability'
   gem 'open_calais'
   gem 'fastimage'
+  gem 'sidekiq'
 end
 
