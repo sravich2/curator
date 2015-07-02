@@ -6,14 +6,12 @@ class User < ActiveRecord::Base
     client = FeedlrClient.client(self.oauth_token)
     client.user_subscriptions.each do |feed|
       feed_feedly_id = feed['id']
-      unless self.feeds.where(:feedly_id => feed_feedly_id).exists?
-        found_feed = Feed.where(:feedly_id => feed_feedly_id).first
-        if found_feed.nil?
-          feed_data = parse_feed(feed)
-          self.feeds.create(feed_data)
-        else
-          Subscription.create(:user_id => self.id, :feed_id => found_feed.id)
-        end
+      found_feed = Feed.where(:feedly_id => feed_feedly_id).first
+      if found_feed.nil?
+        feed_data = parse_feed(feed)
+        self.feeds.create(feed_data)
+      elsif !found_feed.users.where(:id => self.id).exists?
+        Subscription.create(:user_id => self.id, :feed_id => found_feed.id)
       end
     end
   end
