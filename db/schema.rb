@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20150630150219) do
     t.string   "title"
     t.text     "content"
     t.string   "url"
+    t.string   "topics"
+    t.string   "tags"
     t.integer  "feed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

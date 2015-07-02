@@ -5,6 +5,8 @@ class CreateArticles < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.string :url
+      t.string :topics, array: true
+      t.string :tags, array: true
 
       t.belongs_to :feed
       t.timestamps null: false
