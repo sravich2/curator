@@ -14,14 +14,14 @@ module AccountHelper
     strip_tags(content).to_s.html_safe
 #     open_calais = OpenCalais::Client.new
 #
-#     response = open_calais.enrich(content)
+    # response = OpenCalaisClient.client.enrich(content)
 #
 # # which has the 'raw' response
 # #     response.raw
 #
 # # and has been parsed a bit to get :language, :topics, :tags, :entities, :relations, :locations
 # # as lists of hashes
-# #     response.topics.each{|t| puts t[:name]}
+#     response.topics.each{|t| puts t[:name]}
 #     response.tags.inspect
 
   end
