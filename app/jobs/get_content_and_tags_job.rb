@@ -21,9 +21,7 @@ class GetContentAndTagsJob < ActiveJob::Base
   def single_score_hash(hash_array)
     score_hash = Hash.new
     hash_array.each do |hash|
-      hash.each do |k, v|
-        score_hash[k] = v
-      end
+     score_hash[ hash[:name] ] = hash[:score]
     end
     score_hash
   end
