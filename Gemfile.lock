@@ -96,7 +96,7 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    open_calais (0.2.2)
+    open_calais (0.3.1)
       activesupport
       excon
       faraday (>= 0.7.4)

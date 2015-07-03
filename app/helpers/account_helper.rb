@@ -2,14 +2,19 @@ require 'open-uri'
 
 module AccountHelper
   def sandbox
-    # currentTime = Time.now
     # Article.all.each do |a|
-      GetContentAndTagsJob.perform_later(129)
+    #   GetContentAndTagsJob.perform_later(129)
       # end
     # GetContentAndTagsJob.perform_later
 #     # Preview display of web page (DONT REMOVE THIS BLOCK)
-#     Time.now - currentTime
 
+    Article.all.each do |a|
+      GetContentAndTagsJob.perform_later(a.id)
+    end
+
+    # hash.each do |k,v|
+    #   puts "#{k}: #{v}"
+    # end
 #     # content.html.to_s.html_safe
 #
 #     source = Article.find(id = 125).url
