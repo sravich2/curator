@@ -15,7 +15,7 @@ class Feed < ActiveRecord::Base
   end
 
   def self.custom_fields
-    Feed.new.attributes.keys - ["created_at", "updated_at", "id"]
+    Feed.new.attributes.keys - %w(created_at updated_at id)
   end
 
   private
@@ -25,7 +25,12 @@ class Feed < ActiveRecord::Base
     article_data['feedly_id'] = article_hash['id']
     article_data['title'] = article_hash['title']
     article_data['content'] = article_hash['summary']
-    article_data['url'] = article_hash['originId']
+    origin_id = article_hash['originId']
+    if origin_id.include?('www.') || origin_id.include?('http')
+      article_data['url'] = origin_id
+    else
+      article_data['url'] = article_hash['alternate'].at(0)['href']
+    end
     article_data
   end
 
