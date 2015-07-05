@@ -3,9 +3,9 @@ require 'open-uri'
 module AccountHelper
   def sandbox
     # Article.all.each do |a|
-    #   GetContentAndTagsJob.perform_later(129)
+    #   GetContentJob.perform_later(129)
     # end
-    # GetContentAndTagsJob.perform_later
+    # GetContentJob.perform_later
     #     # Preview display of web page (DONT REMOVE THIS BLOCK)
 
     # hash = Hash.new
@@ -34,8 +34,11 @@ module AccountHelper
     # # # #     response.raw.inspect
     # #     response.topics.each{|t| puts t[:name]}
     #     content
-    client = FeedlrClient.client
-
+    # client = FeedlrClient.client
+    # Feed.where(:id => 19).first.articles.each do |a|
+    #   GetContentJob.perform_later(a.id)
+    #   GetTagsJob.perform_later(a.id)
+    # end
 
   end
 end
