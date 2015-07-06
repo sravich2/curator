@@ -46,5 +46,6 @@ group :development, :test do
   gem 'open_calais'
   gem 'fastimage'
   gem 'sidekiq'
+  gem 'chartkick'
 end
 

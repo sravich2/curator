@@ -8,19 +8,20 @@ module AccountHelper
     # GetContentJob.perform_later
     #     # Preview display of web page (DONT REMOVE THIS BLOCK)
 
-    # hash = Hash.new
-    # Article.all.each do |a|
-    #   a.tags.each do |k, v|
-    #     if v.to_f > 0.5
-    #       if hash[k].nil?
-    #         hash[k] = 1
-    #       else
-    #         hash[k] += 1
-    #       end
-    #     end
-    #   end
-    # end
-    # hash.sort_by { |k, v| -v }.to_h
+    hash = Hash.new
+    Article.all.each do |a|
+      a.topics.each do |k, v|
+        if v.to_f > 0.8
+          if hash[k].nil?
+            hash[k] = 1
+          else
+            hash[k] += 1
+          end
+        end
+      end
+    end
+    hash.sort_by { |k, v| -v }[0..30].to_h
+
 
     # hash.each do |k,v|
     #   puts "#{k}: #{v}"
@@ -41,4 +42,4 @@ module AccountHelper
     # end
 
   end
-end
+  end
