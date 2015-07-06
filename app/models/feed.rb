@@ -24,7 +24,6 @@ class Feed < ActiveRecord::Base
     article_data = Hash.new
     article_data['feedly_id'] = article_hash['id']
     article_data['title'] = article_hash['title']
-    article_data['content'] = article_hash['summary']
     origin_id = article_hash['originId']
     if origin_id.include?('www.') || origin_id.include?('http')
       article_data['url'] = origin_id

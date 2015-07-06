@@ -1,6 +1,6 @@
 require 'open-uri'
 
-class GetContentJob < ActiveJob::Base
+class GetContentAndEnqueueTagsJob < ActiveJob::Base
   queue_as :default
 
   def perform(*args)
@@ -10,6 +10,9 @@ class GetContentJob < ActiveJob::Base
     content = ActionView::Base.full_sanitizer.sanitize(content)
     current_article.content = content
     current_article.save
+
+    GetTagsJob.perform_later(current_article.id)
+
   end
 
 end
