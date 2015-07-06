@@ -30,6 +30,8 @@ class Feed < ActiveRecord::Base
     else
       article_data['url'] = article_hash['alternate'].at(0)['href']
     end
+    enc_uri = CGI::escape(article_data['url'])
+    article_data['readability_url'] = "http://www.readability.com/m?url=#{enc_uri}"
     article_data
   end
 
