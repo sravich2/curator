@@ -1,1 +1,5 @@
-<%= sandbox %>
+<ul class = "list-group">
+<% Article.where(:feed_id => 20).each do |a| %>
+  <a href = <%= a.url %> ><li class = "list-group-item"><%= a.title %><br><%= a.tags %></li></a>
+<% end %>
+</ul>
