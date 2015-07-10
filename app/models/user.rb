@@ -20,6 +20,24 @@ class User < ActiveRecord::Base
     User.new.attributes.keys - ["created_at", "updated_at", "id"]
   end
 
+  def topic_percentages
+    hash = Hash.new
+    feeds.each do |f|
+      f.articles.each do |a|
+        a.tags.each do |k, v|
+          if v.to_f > 0.8
+            if hash[k].nil?
+              hash[k] = 1
+            else
+              hash[k] += 1
+            end
+          end
+        end
+      end
+    end
+    hash.sort_by { |_, v| -v }[0..30].to_h
+  end
+
   private
 
   def parse_feed(feedlr_collection)

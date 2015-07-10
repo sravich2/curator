@@ -1,3 +1,5 @@
+<%= sandbox %>
+
 <div class="container" width="1200px">
   <ul class="list-group">
     <% Article.all.each do |a| %>
@@ -5,9 +7,9 @@
         <% a.topics.each do |topic, imp| %>
             <span class="label label-default pull-right"><%= topic %></span>
         <% end %>
-        <!--<br><%# a.tags %></a>-->
+        <br>Tags: <%= a.tags %></a>
     <% end %>
   </ul>
 </div>
 
-<%= bar_chart sandbox %> <%= yield %>
+<%= bar_chart User.find(1).topic_percentages %> <%= yield %>
