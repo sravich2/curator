@@ -2,7 +2,7 @@ class GetTagsJob < ActiveJob::Base
   queue_as :default
 
   def perform(*args)
-    current_article = Article.where(:id => args.at(0)).first
+    current_article = Article.find(args.at(0))
     content = current_article.content
     open_calais_response = OpenCalaisClient.client.enrich(content)
     current_article.tags = single_score_hash(open_calais_response.tags)

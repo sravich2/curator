@@ -1,12 +1,13 @@
-<%= sandbox %>
-<ul class="list-group">
-  <% Article.all.each do |a| %>
-      <a href=<%= a.url %> class = "list-group-item"><%= a.title %>
-      <% a.topics.each do |topic, imp| %>
-      <span class = "label label-default pull-right"><%= topic %></span>
-          <% end %>
-      <br><%= a.tags %></a>
-  <% end %>
-</ul>
+<div class="container" width="1200px">
+  <ul class="list-group">
+    <% Article.all.each do |a| %>
+        <a href=<%= a.url %> class = "list-group-item"><%= a.title %>
+        <% a.topics.each do |topic, imp| %>
+            <span class="label label-default pull-right"><%= topic %></span>
+        <% end %>
+        <!--<br><%# a.tags %></a>-->
+    <% end %>
+  </ul>
+</div>
 
 <%= bar_chart sandbox %> <%= yield %>
