@@ -9,7 +9,8 @@ class Feed < ActiveRecord::Base
       unless self.articles.where(:feedly_id => article['id']).exists?
         article_data = parse_article(article)
         article_data['feed_id'] = self.id
-        self.articles.create(article_data)
+        created_article = self.articles.create(article_data)
+        GetContentAndEnqueueTagsJob.perform_later(created_article.id)
       end
     end
   end

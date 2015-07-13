@@ -47,8 +47,8 @@ class User < ActiveRecord::Base
     feed_data['subscribers'] = feedlr_collection['subscribers'].to_i
     feed_data['topics'] = feedlr_collection['topics']
     feed_data['title'] = feedlr_collection['title']
-    # feed_data['user_id'] = current_user_id
-    # feed_data['user_id'] = 1
+    feed_data['favicon_url'] = feedlr_collection['iconUrl']
+    feed_data['logo_url'] = feedlr_collection['visualUrl']
     feed_data
   end
 

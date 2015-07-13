@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706233910) do
+ActiveRecord::Schema.define(version: 20150713112503) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "feedly_id"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20150706233910) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "readability_url"
+    t.string   "logo_url"
+    t.string   "favicon_url"
   end
 
   create_table "feeds", force: :cascade do |t|
@@ -34,6 +36,8 @@ ActiveRecord::Schema.define(version: 20150706233910) do
     t.string   "title"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "favicon_url"
+    t.string   "logo_url"
   end
 
   create_table "subscriptions", force: :cascade do |t|

@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'cgi'
 
 class GetContentAndEnqueueTagsJob < ActiveJob::Base
   queue_as :default
