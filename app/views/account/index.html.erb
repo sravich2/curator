@@ -1,17 +1,17 @@
 <%= sandbox %>
 
-<div class="container">
+<div class="articles-container">
   <ul class="list-group">
     <% Article.all.each do |a| %>
-        <a href=<%= a.readability_url %> class = "list-group-item"><%= a.title %>
+        <a href=<%= a.readability_url %> class = "list-group-item"><div class = "article-title"><%= a.title %>
         <% a.topics.each do |topic, _| %>
-            <span class="label label-default pull-right"><%= topic %></span>
-        <% end %>
-        <br>Tags: <%= a.tags.keys.join(', ') %>
+            <span class="topic-label label label-default pull-right"><%= topic %></span>
+        <% end %></div>
+        Tags: <%= a.tags.keys.join(', ') %>
         <% curr_feed = Feed.find(a.feed_id) %>
         <br>
         <%# image_tag(curr_feed.favicon_url, alt: curr_feed.title, class: 'favicon') %>
-        <%= curr_feed.title %>
+        <div class = "feed-title"><%= curr_feed.title %></div>
         </a>
     <% end %>
   </ul>
