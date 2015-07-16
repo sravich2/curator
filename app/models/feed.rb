@@ -1,3 +1,5 @@
+require 'date'
+
 class Feed < ActiveRecord::Base
   has_many :articles
   has_many :subscriptions
@@ -25,6 +27,8 @@ class Feed < ActiveRecord::Base
     article_data = Hash.new
     article_data['feedly_id'] = article_hash['id']
     article_data['title'] = article_hash['title']
+    article_data['author'] = article_hash['author']
+    article_data['published'] = DateTime.strptime(article_hash['published'].to_s, '%Q') # Converts milliseconds since epoch to DateTime
     origin_id = article_hash['originId']
     if origin_id.include?('www.') || origin_id.include?('http')
       article_data['url'] = origin_id
