@@ -3,15 +3,18 @@
 <div class="articles-container">
   <ul class="list-group">
     <% Article.all.each do |a| %>
-        <%= link_to a.readability_url, class: "list-group-item" do %><div class = "article-title"><%= a.title %>
-        <% a.topics.keys.each do |topic| %>
-            <span class="topic-label label label-default pull-right"><%= topic %></span>
-        <% end %></div>
-        Tags: <%= a.tags.keys.join(', ') %>
-        <% curr_feed = Feed.find(a.feed_id) %>
-        <br>
-        <%# image_tag(curr_feed.favicon_url, alt: curr_feed.title, class: 'favicon') %>
-        <div class = "feed-title"><%= "#{curr_feed.title} | #{(Date.today - a.published.to_date).to_i} days ago" %></div>
+        <%= link_to a.readability_url, class: "list-group-item" do %>
+            <div class="article-title"><%= a.title %>
+              <% a.topics.keys.each do |topic| %>
+                  <span class="topic-label label label-default pull-right"><%= topic %></span>
+              <% end %></div>
+            Tags: <%= a.tags.keys.join(', ') %>
+            <br>
+            Locations: <%= a.locations.keys.join(', ') %>
+            <% curr_feed = Feed.find(a.feed_id) %>
+            <br>
+            <%# image_tag(curr_feed.favicon_url, alt: curr_feed.title, class: 'favicon') %>
+            <div class="feed-title"><%= "#{curr_feed.title} | #{(Date.today - a.published.to_date).to_i} days ago" %></div>
         <% end %>
     <% end %>
   </ul>

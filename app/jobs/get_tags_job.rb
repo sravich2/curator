@@ -6,6 +6,7 @@ class GetTagsJob < ActiveJob::Base
     content = current_article.content
     open_calais_response = OpenCalaisClient.client.enrich(content)
     current_article.tags = single_score_hash(open_calais_response.tags)
+    current_article.locations = single_score_hash(open_calais_response.locations)
     current_article.topics = single_score_hash(open_calais_response.topics)
     current_article.save
   end
