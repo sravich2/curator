@@ -11,6 +11,8 @@
             Tags: <%= a.tags.keys.join(', ') %>
             <br>
             Locations: <%= a.locations.keys.join(', ') %>
+            <br>
+            Entities: <%# a.entities.nil? %>
             <% curr_feed = Feed.find(a.feed_id) %>
             <br>
             <%# image_tag(curr_feed.favicon_url, alt: curr_feed.title, class: 'favicon') %>
