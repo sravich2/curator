@@ -2,7 +2,7 @@
 
 <div class="articles-container">
   <ul class="list-group">
-    <% Article.all.each do |a| %>
+    <% @articles.each do |a| %>
         <%= link_to a.readability_url, class: 'list-group-item' do %>
             <div class="article-title"><%= a.title %>
               <% a.topics.keys.each do |topic| %>

@@ -10,7 +10,6 @@ class Article < ActiveRecord::Base
   serialize :entities, JSON
   serialize :locations, Hash
 
-
   def self.custom_fields
     Article.new.attributes.keys - %w(created_at updated_at id)
   end
