@@ -12,7 +12,7 @@
             <br>
             Locations: <%= a.locations.keys.join(', ') %>
             <br>
-            Entities: <%# a.entities.nil? %>
+            Entities: <%= a.entities.keys.join(', ') %>
             <% curr_feed = Feed.find(a.feed_id) %>
             <br>
             <%# image_tag(curr_feed.favicon_url, alt: curr_feed.title, class: 'favicon') %>
