@@ -1,5 +1,10 @@
 class Article < ActiveRecord::Base
   belongs_to :feed
+  has_many :users_that_like, through: :likes, foreign_key: 'user_id', class_name: 'User'
+
+  has_many :likes
+  has_many :likers, through: :likes, source: :user
+
   serialize :tags, Hash
   serialize :topics, Hash
   serialize :entities, JSON
