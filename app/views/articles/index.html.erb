@@ -8,6 +8,7 @@
               <% a.topics.keys.each do |topic| %>
                   <span class="topic-label label label-default pull-right"><%= topic %></span>
               <% end %></div>
+            <%= button_to 'Like', likes_create_path(:user_id => User.first.id, :article_id => a.id), remote: true %>
             Tags: <%= a.tags.keys.join(', ') %>
             <br>
             Locations: <%= a.locations.keys.join(', ') %>

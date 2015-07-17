@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :articles
 
   root 'articles#index'
+  namespace :likes do
+    post 'create'
+  end
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
