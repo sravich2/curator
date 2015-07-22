@@ -9,11 +9,11 @@
                     <span class="topic-label label label-default pull-right"><%= topic %></span>
                 <% end %></div>
             <div class = 'article-info'>
-              Tags: <%= a.tags.keys.join(', ') %>
+              Tags: <%= a.most_likely(:tags).join(', ') %>
               <br>
-              Locations: <%= a.locations.keys.join(', ') %>
+              Locations: <%= a.most_likely(:locations).join(', ') %>
               <br>
-              Entities: <%= a.entities.keys.join(', ') %>
+              Entities: <%= a.most_likely(:entities).join(', ')  %>
               <% curr_feed = Feed.find(a.feed_id) %>
               <br>
               <%# image_tag(curr_feed.favicon_url, alt: curr_feed.title, class: 'favicon') %>

@@ -14,4 +14,23 @@ class Article < ActiveRecord::Base
     Article.new.attributes.keys - %w(created_at updated_at id)
   end
 
+  def most_likely(field)
+    case field.to_sym
+      when :tags
+        tags.select { |_, score| score == 0.9 }.keys
+      when :topics
+        topics.select { |_, score| score > 0.75 }.keys
+      when :locations
+        locations.select { |_, score| score >= 0.8 }.keys
+      when :entities
+        entities_array = Array.new
+        entities.each do |_, entitiesSet|
+          entities_array.concat entitiesSet.select { |_, score| score >= 0.8 }.keys
+        end
+        entities_array
+      else
+        puts 'Field does not exist'
+    end
+  end
+
 end

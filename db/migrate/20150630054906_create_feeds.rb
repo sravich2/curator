@@ -9,5 +9,6 @@ class CreateFeeds < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :feeds, :feedly_id, :unique => true
   end
 end

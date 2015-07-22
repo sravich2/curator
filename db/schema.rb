@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20150717061925) do
     t.string   "readability_url"
   end
 
+  add_index "articles", ["feedly_id"], name: "index_articles_on_feedly_id", unique: true
+
   create_table "feeds", force: :cascade do |t|
     t.string   "website"
     t.integer  "subscribers"
@@ -41,6 +43,8 @@ ActiveRecord::Schema.define(version: 20150717061925) do
     t.string   "favicon_url"
     t.string   "logo_url"
   end
+
+  add_index "feeds", ["feedly_id"], name: "index_feeds_on_feedly_id", unique: true
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"

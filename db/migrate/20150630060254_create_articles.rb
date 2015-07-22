@@ -15,5 +15,7 @@ class CreateArticles < ActiveRecord::Migration
       t.belongs_to :feed
       t.timestamps null: false
     end
+    add_index :articles, :feedly_id, :unique => true
+
   end
 end

@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :liked_articles, through: :likes, source: :article
 
-
   def populate_feeds
     client = FeedlrClient.client(self.oauth_token)
     client.user_subscriptions.each do |feed|
