@@ -10,6 +10,7 @@ class CreateArticles < ActiveRecord::Migration
       t.text :tags
       t.text :entities
       t.text :locations
+      t.text :relations
       t.datetime :published
 
       t.belongs_to :feed

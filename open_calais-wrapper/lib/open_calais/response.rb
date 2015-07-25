@@ -66,7 +66,7 @@ module OpenCalais
             self.entities << item
           end
         when 'relations'
-          item = v.reject{|k,v| k[0] == '_' || k == 'instances'} || {}
+          item = v.reject{|k1,v1| k1[0] == '_' || k1 == 'instances' || k1 == 'forenduserdisplay' } || {}
           item.each do |k1,v1|
             if v1.start_with?('http://d.open')
               item[k1] = entities_hash[v1]

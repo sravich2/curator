@@ -8,7 +8,8 @@ $(document).ready(function () {
         $.ajax({
             url: '/likes/create',
             type: 'POST',
-            data: info
+            data: info,
+            remote: true
         })
     })
 });

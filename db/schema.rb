@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150717061925) do
     t.text     "tags"
     t.text     "entities"
     t.text     "locations"
+    t.text     "relations"
     t.datetime "published"
     t.integer  "feed_id"
     t.datetime "created_at",      null: false

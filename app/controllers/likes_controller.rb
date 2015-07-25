@@ -5,5 +5,6 @@ class LikesController < ApplicationController
     unless Like.where(:article_id => a_id).where(:user_id => u_id).exists?
       Like.create(:user_id => u_id, :article_id => a_id)
     end
+    render :nothing => true
   end
 end

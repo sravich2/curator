@@ -16,6 +16,8 @@
               Entities: <%= a.most_likely(:entities).join(', ')  %>
               <% curr_feed = Feed.find(a.feed_id) %>
               <br>
+              Relations: <%= a.relations %>
+              <br>
               <%# image_tag(curr_feed.favicon_url, alt: curr_feed.title, class: 'favicon') %>
               <div class="feed-title"><%= "#{curr_feed.title} | #{a.author} | #{(Date.today - a.published.to_date).to_i} days ago" %></div>
             </div>
