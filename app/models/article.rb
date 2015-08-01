@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Article < ActiveRecord::Base
   belongs_to :feed
   has_many :users_that_like, through: :likes, foreign_key: 'user_id', class_name: 'User'
@@ -32,6 +34,12 @@ class Article < ActiveRecord::Base
       else
         puts 'Field does not exist'
     end
+  end
+
+  def generate_readable_html
+    html_content = open(readability_url).read
+    matches = /<article id.*?>(.+)<\/article>/m.match(html_content)
+    matches[1]
   end
 
 end

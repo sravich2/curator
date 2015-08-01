@@ -3,14 +3,15 @@
 <div class="articles-container">
   <ul class="list-group">
     <% @articles.each do |a| %>
-          <%= link_to a.readability_url, class: 'list-group-item article-item', :data => {:id => a.id}  do %>
+          <%= link_to a, class: 'list-group-item article-item', :data => {:id => a.id}  do %>
               <div class="article-title"><%= a.title %>
                 <% a.topics.keys.each do |topic| %>
                     <span class="topic-label label label-default pull-right"><%= topic %></span>
                 <% end %>
               </div>
             <div class = 'article-info'>
-              <%= display_tag_attrs(a).html_safe %>
+              <%# display_tag_attrs(a).html_safe %>
+              <%= a.most_likely(:tags) %>
               <div class="feed-title">
                 <%# image_tag(curr_feed.favicon_url, alt: curr_feed.title, class: 'favicon') %>
                 <%= display_footer_attrs(a).html_safe %>

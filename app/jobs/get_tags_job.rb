@@ -10,7 +10,7 @@ class GetTagsJob < ActiveJob::Base
     current_article.locations = single_score_hash(open_calais_response.locations)
     current_article.topics = single_score_hash(open_calais_response.topics)
     current_article.entities = entity_data_to_hash(open_calais_response.entities)
-    current_article.relations = relations_data_to_hash(open_calais_response.relations)
+    # current_article.relations = relations_data_to_hash(open_calais_response.relations)
     current_article.save
   end
 
