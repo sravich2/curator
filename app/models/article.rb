@@ -38,8 +38,9 @@ class Article < ActiveRecord::Base
 
   def generate_readable_html
     html_content = open(readability_url).read
-    matches = /<article id.*?>(.+)<\/article>/m.match(html_content)
-    matches[1]
+    complete_content_html = /(<article id[^>]+>.+<\/article>)/m.match(html_content)[1]
+    header_html = /(<header.+<\/header>)/m.match(complete_content_html)[1]
+    content_html = /(<section id.+<\/section>)/m.match(complete_content_html)[1]
   end
 
 end
