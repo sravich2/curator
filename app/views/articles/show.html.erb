@@ -6,10 +6,24 @@
   <link href=' http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<div class = 'main-container'>
+<div class="settings">
+  <div class="align-settings">
+    <input type="image" align-value='justify' src="http://icons.iconarchive.com/icons/icons8/ios7/256/Editing-Align-Justify-icon.png">
+    <input type="image" align-value='left' src="http://icons.iconarchive.com/icons/icons8/ios7/256/Editing-Align-Left-icon.png">
+  </div>
+  <div class="length-settings">
+    <input type="image" length-action='+' src="https://cdn4.iconfinder.com/data/icons/epic-outlines/30/enlarge_horizontal-128.png">
+    <input type="image" length-action='-' src="https://cdn4.iconfinder.com/data/icons/epic-outlines/30/shrink_horizontal-128.png">
+  </div>
+</div>
 <div class="article">
   <div class="article-title"><%= @article.title %></div>
   <div class="article-author"><%= "#{@article.author} | #{@article.published.to_date.to_s(:rfc822)}" %></div>
-  <%= @html.try(:html_safe) %>
+  <div class="article-content">
+    <%= @html.try(:html_safe) %>
+  </div>
+</div>
 </div>
 </body>
 </html>

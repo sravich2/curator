@@ -1,7 +1,4 @@
-body {
-}
-
-.article {
+.main-container {
     width: 40%;
     margin: auto;
     font-family: 'Sorts Mill Goudy', Georgia;
@@ -20,3 +17,33 @@ body {
     text-align: center;
     margin: 3% 0 3% 0;
 }
+
+.article-content {
+    font-size: 1.7rem;
+}
+
+.length-settings > *, .align-settings > *{
+    display: inline-block;
+    width: 10%;
+    height: auto;
+    margin: 5% .2% 0 0.2%;
+}
+
+.length-settings > *:focus, .align-settings > *:focus {
+    outline: 0;
+}
+
+.length-settings, .align-settings {
+    display: inline-block;
+    width: 50%;
+}
+
+.length-settings {
+    float: left;
+}
+
+.settings {
+    text-align: center;
+}
+
+
