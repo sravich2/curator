@@ -2,6 +2,7 @@
     width: 50%;
     margin: auto;
     font-family: 'Sorts Mill Goudy', Georgia, sans-serif;
+    font-variant-numeric: lining-nums;
 }
 
 .article-title {
