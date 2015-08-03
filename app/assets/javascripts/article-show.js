@@ -9,7 +9,7 @@ $(document).ready(function() {
 
     $('.length-settings').on('click', '*', function() {
         var action = $(this).attr('length-action');
-        var currentSetting = pxToPercent($('.main-container'));
+        var currentSetting = pxToPercent($('.article'));
         if (action == '+') {
             newSetting = currentSetting + 10 + '%';
         }
@@ -18,13 +18,13 @@ $(document).ready(function() {
         }
         if (parseInt(newSetting) <= 100 && parseInt(newSetting)  >= 30) {
             var extend_css_class = {'width': newSetting};
-            $('.main-container').css(extend_css_class);
+            $('.article').css(extend_css_class);
         }
     });
 
     $(document).keydown(function(e) {
         if (e.which == 39) {
-            $('.main-container').hide('drop', {direction: 'left'}, 1000);
+            $('.article').hide('drop', {direction: 'left'}, 1000);
         }
         e.preventDefault();
     });
