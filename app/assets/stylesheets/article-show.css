@@ -9,13 +9,13 @@
     font-weight: bold;
     text-align: center;
     font-size: 1.5em;
-    margin: 3% 0 2%  0;
+    margin: 1rem 0 1rem  0;
 }
 
 .article-header {
     color: #999999;
     text-align: center;
-    margin: 3% 0 3% 0;
+    margin: 1rem 0 1rem 0;
 }
 
 .article-author {
@@ -31,27 +31,19 @@
     text-align: justify;
 }
 
-.length-settings > *, .align-settings > *{
+.settings > * > *{
     display: inline-block;
-    width: 5%;
+    width: 10%;
     height: auto;
-    margin: 3% 1% 0 1%;
+    margin: 1.5rem 0.5rem 0 0.5rem;
 }
 
-.length-settings > *:focus, .align-settings > *:focus {
+.settings > * > *:focus {
     outline: 0;
 }
 
-.length-settings {
-    text-align: left;
-}
-
-.align-settings {
-    text-align: right;
-}
-
-.length-settings {
-    float: left;
+.settings > * {
+    text-align: center;
 }
 
 img {
