@@ -33,19 +33,21 @@
 
 .length-settings > *, .align-settings > *{
     display: inline-block;
-    width: 10%;
+    width: 5%;
     height: auto;
-    margin: 2% 0.2% 0 0.2%;
+    margin: 3% 1% 0 1%;
 }
 
 .length-settings > *:focus, .align-settings > *:focus {
     outline: 0;
 }
 
-.length-settings, .align-settings {
-    display: inline-block;
-    width: 50%;
-    text-align: center;
+.length-settings {
+    text-align: left;
+}
+
+.align-settings {
+    text-align: right;
 }
 
 .length-settings {
