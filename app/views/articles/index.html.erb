@@ -4,7 +4,7 @@
   <ul class="list-group">
     <% @articles.each do |a| %>
           <%= link_to a, class: 'list-group-item article-item', :data => {:id => a.id}  do %>
-              <div class="article-title"><%= a.title %>
+              <div class="article-index-title"><%= a.title %>
                 <% a.topics.keys.each do |topic| %>
                     <span class="topic-label label label-default pull-right"><%= topic %></span>
                 <% end %>

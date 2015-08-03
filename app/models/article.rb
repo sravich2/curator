@@ -37,18 +37,17 @@ class Article < ActiveRecord::Base
   end
 
   def generate_readable_html
-    html_content = open(readability_url).read
+    html_content = open(self.readability_url).read
     html_doc = Nokogiri::HTML(html_content)
     complete_content_html = html_doc.search('//article').first.to_html
     complete_content_html_doc = Nokogiri::HTML(complete_content_html)
     header_html = html_doc.search('//header').first.to_html
     content_html_doc = complete_content_html_doc.search('//section').first
-    # content_html_doc.search('//ul').each do |node|
-    #   node.remove
-    # end
+    content_html_doc.search('//ul').each do |node|
+      node.remove
+    end
     content_html_doc.to_html
   end
 
-  private
 
 end

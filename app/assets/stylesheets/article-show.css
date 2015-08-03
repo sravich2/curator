@@ -1,7 +1,7 @@
 .main-container {
     width: 50%;
     margin: auto;
-    font-family: 'Sorts Mill Goudy', Georgia;
+    font-family: 'Sorts Mill Goudy', Georgia, sans-serif;
 }
 
 .article-title {
@@ -11,11 +11,18 @@
     margin: 3% 0 2%  0;
 }
 
-.article-author {
+.article-header {
     color: #999999;
-    text-transform: uppercase;
     text-align: center;
     margin: 3% 0 3% 0;
+}
+
+.article-author {
+    text-transform: uppercase;
+}
+
+.article-header >* {
+    display: inline-block;
 }
 
 .article-content {
