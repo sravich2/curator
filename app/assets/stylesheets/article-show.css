@@ -1,5 +1,5 @@
 .main-container {
-    width: 40%;
+    width: 50%;
     margin: auto;
     font-family: 'Sorts Mill Goudy', Georgia;
 }
@@ -20,13 +20,14 @@
 
 .article-content {
     font-size: 1.7rem;
+    text-align: justify;
 }
 
 .length-settings > *, .align-settings > *{
     display: inline-block;
     width: 10%;
     height: auto;
-    margin: 5% .2% 0 0.2%;
+    margin: 2% 0.2% 0 0.2%;
 }
 
 .length-settings > *:focus, .align-settings > *:focus {
@@ -36,14 +37,17 @@
 .length-settings, .align-settings {
     display: inline-block;
     width: 50%;
+    text-align: center;
 }
 
 .length-settings {
     float: left;
 }
 
-.settings {
-    text-align: center;
+img {
+    max-width: 100%;
+    max-height: 100%;
+    float: right;
+    padding: 1rem 1rem 1rem 1rem;
 }
-
 

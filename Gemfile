@@ -49,4 +49,5 @@ group :development, :test do
   gem 'chartkick'
 end
 
-gem 'pismo'
+gem 'nokogiri'
+gem 'jquery-ui-rails'
