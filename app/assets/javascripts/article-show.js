@@ -10,6 +10,7 @@ $(document).ready(function() {
     $('.length-settings').on('click', '*', function() {
         var action = $(this).attr('length-action');
         var currentSetting = pxToPercent($('.article'));
+        var newSetting;
         if (action == '+') {
             newSetting = currentSetting + 10 + '%';
         }
@@ -20,6 +21,20 @@ $(document).ready(function() {
             var extend_css_class = {'width': newSetting};
             $('.article').css(extend_css_class);
         }
+    });
+
+    $('.font-size-settings').on('click', '*', function() {
+        var action = $(this).attr('font-size-action');
+        var currentSetting = $('.article-content').css('font-size');
+        var newSetting;
+        if (action == '+') {
+            newSetting = (parseInt(currentSetting) + 1) + 'px';
+        }
+        else if (action == '-') {
+            newSetting = (parseInt(currentSetting) - 1) + 'px';
+        }
+        var font_size_css_class = {'font-size': newSetting};
+        $('.article-content').css(font_size_css_class);
     });
 
     $(document).keydown(function(e) {
