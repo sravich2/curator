@@ -37,6 +37,18 @@ $(document).ready(function() {
         $('.article-content').css(font_size_css_class);
     });
 
+    $('.background-settings').on('click', '*', function() {
+        var newBgColor = $(this).attr('bg-color-value');
+        var bg_color_css_class;
+        if (newBgColor != 'black') {
+            bg_color_css_class = {'background-color': newBgColor, color: 'black'};
+        }
+        else {
+            bg_color_css_class = {'background-color': newBgColor, color: 'white'}
+        }
+        $('.article-container').css(bg_color_css_class);
+    });
+
     $(document).keydown(function(e) {
         if (e.which == 39) {
             $('.article').hide('drop', {direction: 'left'}, 1000);

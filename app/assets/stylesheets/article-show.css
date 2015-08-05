@@ -38,6 +38,22 @@
     margin: 1.5rem 0.5rem 0 0.5rem;
 }
 
+.background-settings > *{
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    border: thin solid;
+}
+
+.background-setting-black {
+    background-color: black;
+    color: white;
+}
+
+.background-setting-lightyellow {
+    background-color: lightyellow;
+}
+
 .settings > * > *:focus {
     outline: 0;
 }

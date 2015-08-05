@@ -8,7 +8,7 @@
 <body>
 <div class='container'>
   <div class="settings row">
-    <div class="align-settings col-md-2 col-md-offset-3">
+    <div class="align-settings col-md-2 col-md-offset-2">
       <input type="image" align-value='justify' src="http://icons.iconarchive.com/icons/icons8/ios7/256/Editing-Align-Justify-icon.png">
       <input type="image" align-value='left' src="http://icons.iconarchive.com/icons/icons8/ios7/256/Editing-Align-Left-icon.png">
     </div>
@@ -21,9 +21,14 @@
       <span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>
       <input type="image" font-size-action="-" src="http://icons.iconarchive.com/icons/icons8/ios7/512/Arrows-Down-4-icon.png">
     </div>
+    <div class = "background-settings col-md-2">
+      <div class = "background-setting-white" bg-color-value="white" style="cursor: pointer;">a</div>
+      <div class = "background-setting-black" bg-color-value="black" style="cursor: pointer;">a</div>
+      <div class = "background-setting-lightyellow" bg-color-value="lightyellow" style="cursor: pointer;">a</div>
+    </div>
   </div>
   </div>
-<div class = "container">
+<div class = "container article-container">
   <div class="article">
       <div class="article-title"><%= @article.title %></div>
     <div class="article-header">
