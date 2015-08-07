@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20150717061925) do
 
   create_table "users", force: :cascade do |t|
     t.text     "oauth_token"
+    t.text     "all_tags"
+    t.text     "liked_tags"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

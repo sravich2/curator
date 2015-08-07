@@ -5,7 +5,11 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :liked_articles, through: :likes, source: :article
 
+  serialize :all_tags, JSON
+  serialize :liked_tags, JSON
+
   def populate_feeds
+
     client = FeedlrClient.client(self.oauth_token)
     client.user_subscriptions.each do |feed|
       feed_feedly_id = feed['id']

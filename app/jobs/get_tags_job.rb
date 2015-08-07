@@ -3,6 +3,7 @@ class GetTagsJob < ActiveJob::Base
 
   def perform(*args)
     current_article = Article.find(args.at(0))
+    current_user = User.first
     title = current_article.title
     content = current_article.content
     open_calais_response = OpenCalaisClient.client.enrich(title + content)
@@ -10,6 +11,20 @@ class GetTagsJob < ActiveJob::Base
     current_article.locations = single_score_hash(open_calais_response.locations)
     current_article.topics = single_score_hash(open_calais_response.topics)
     current_article.entities = entity_data_to_hash(open_calais_response.entities)
+
+    attrs = ['tags', 'topics', 'entities']
+    attrs.each do |attr|
+      current_article.most_likely(attr).each do |a|
+        current_value = current_user.all_tags[attr][a]
+        if current_value.nil?
+          current_user.all_tags[attr][a] = 1
+        else
+          current_user.all_tags[attr][a] = current_value + 1
+        end
+      end
+    end
+    current_user.save
+
     # current_article.relations = relations_data_to_hash(open_calais_response.relations)
     current_article.save
   end
@@ -40,6 +55,6 @@ class GetTagsJob < ActiveJob::Base
   end
 
   def relations_data_to_hash(relations_data)
-    relations_data.select { |k,v| k!='forenduserdisplay' }
+    relations_data.select { |k, v| k!='forenduserdisplay' }
   end
 end
