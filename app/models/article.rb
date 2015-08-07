@@ -49,5 +49,33 @@ class Article < ActiveRecord::Base
     content_html_doc.to_html
   end
 
+  def calculate_like_probability
+
+    # P (L|t1, t2 .. tk) = P(t1|L) P(t2|L) .. P (tk|L) * P(L) / P(t1,t2 .. tk)
+    current_user = User.first
+    user_like_prob = Like.count.to_f / Article.count
+    user_likes = Like.count.to_f
+    probs = {}
+    attrs = ['tags', 'topics', 'entities']
+    attrs.each do |attr|
+      article_like_score = 1.to_f
+      article_dislike_score = 1.to_f
+      familiar_attr_set = self.most_likely(attr.to_sym).select { |i| current_user.all_tags[attr].has_key?(i) && current_user.all_tags[attr][i] > 1 }
+      familiar_attr_set.each do |a|
+        attr_liked_count = current_user.liked_tags[attr][a]
+        if attr_liked_count.nil?
+          cond_prob = 1 / user_likes
+        else
+          cond_prob = attr_liked_count / user_likes
+        end
+        article_like_score = article_like_score* cond_prob
+        article_dislike_score = article_dislike_score * (1 - cond_prob)
+      end
+      article_like_score = article_like_score * [user_like_prob, 1 - user_like_prob].max
+      # article_dislike_score = article_dislike_score * [user_like_prob, 1 - user_like_prob].max
+      probs[attr] = article_like_score*100
+    end
+    probs
+  end
 
 end

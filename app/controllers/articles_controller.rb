@@ -2,7 +2,7 @@ require 'open-uri'
 
 class ArticlesController < ApplicationController
   def index
-    @articles = User.first.feeds.all.collect { |feed| feed.articles.all }.flatten! #TODO: Change User.first to User.current_user
+    @articles = User.first.feeds.all.collect { |feed| feed.articles.all }.flatten!.sort_by {|a| -a.calculate_like_probability['entities'] } #TODO: Change User.first to User.current_user
   end
 
   def show
