@@ -71,7 +71,11 @@ class Article < ActiveRecord::Base
         article_like_score = article_like_score* cond_prob
         article_dislike_score = article_dislike_score * (1 - cond_prob)
       end
-      article_like_score = article_like_score * [user_like_prob, 1 - user_like_prob].max
+      if familiar_attr_set.blank?
+        article_like_score = 0
+      else
+        article_like_score = article_like_score * [user_like_prob, 1 - user_like_prob].max
+      end
       # article_dislike_score = article_dislike_score * [user_like_prob, 1 - user_like_prob].max
       probs[attr] = article_like_score*100
     end

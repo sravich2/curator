@@ -31,4 +31,5 @@ module ArticlesHelper
     curr_feed = Feed.find(current_article.feed_id)
     "#{curr_feed.title} | #{current_article.author} | #{(Date.today - current_article.published.to_date).to_i} days ago"
   end
+
 end
