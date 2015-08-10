@@ -51,3 +51,4 @@ end
 
 gem 'nokogiri'
 gem 'jquery-ui-rails'
+gem 'whenever', :require => false
