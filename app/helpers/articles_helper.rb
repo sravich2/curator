@@ -29,7 +29,21 @@ module ArticlesHelper
 
   def display_footer_attrs(current_article)
     curr_feed = Feed.find(current_article.feed_id)
-    "#{curr_feed.title} | #{current_article.author} | #{(Date.today - current_article.published.to_date).to_i} days ago"
+    "#{curr_feed.title} | #{current_article.author} | #{time_since_published(current_article.published)}"
   end
 
+  def time_since_published(published)
+    days_since = (Date.today - published.to_date).to_i
+    if days_since > 0
+      return "#{days_since} days ago"
+    else
+      hours_since = (DateTime.now.hour - published.hour).to_i
+      if hours_since > 0
+        return "#{hours_since} hours ago"
+      else
+        minutes_since = (DateTime.now.minute - published.minute).to_i
+        return "#{minutes_since} minutes ago"
+      end
+    end
+  end
 end
