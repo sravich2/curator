@@ -1,6 +1,6 @@
 desc "Fetches new articles through RSS"
 namespace :articles do
   task :fetch do
-    Feed.all.populate_articles
+    Feed.all.each { |f| f.populate_articles }
   end
 end
