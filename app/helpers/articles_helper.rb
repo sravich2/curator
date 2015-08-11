@@ -35,14 +35,14 @@ module ArticlesHelper
   def time_since_published(published)
     days_since = (Date.today - published.to_date).to_i
     if days_since > 0
-      return "#{days_since} days ago"
+      return "#{pluralize(days_since, "day")} ago"
     else
       hours_since = (DateTime.now.hour - published.hour).to_i
       if hours_since > 0
-        return "#{hours_since} hours ago"
+        return "#{pluralize(hours_since, "hour")} ago"
       else
         minutes_since = (DateTime.now.minute - published.minute).to_i
-        return "#{minutes_since} minutes ago"
+        return "#{pluralize(minutes_since, "minute")} ago"
       end
     end
   end
