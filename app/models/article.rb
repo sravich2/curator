@@ -82,4 +82,10 @@ class Article < ActiveRecord::Base
     probs
   end
 
+  private
+
+  def self.prediction_fields
+    %w(tags topics entities author)
+  end
+
 end

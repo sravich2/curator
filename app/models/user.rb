@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
   serialize :all_tags, JSON
   serialize :liked_tags, JSON
 
-  def populate_feeds
+  before_create :initialize_fields
 
+  def populate_feeds
     client = FeedlrClient.client(self.oauth_token)
     client.user_subscriptions.each do |feed|
       feed_feedly_id = feed['id']
@@ -46,6 +47,18 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def initialize_fields
+    fields_to_initialize = [:all_tags, :liked_tags]
+
+    fields_to_initialize.each do |f|
+      hash = {}
+      Article.prediction_fields.each do |pf|
+        hash[pf] = {}
+      end
+      write_attribute(f, hash)
+    end
+  end
 
   def parse_feed(feedlr_collection)
     feed_data = Hash.new
