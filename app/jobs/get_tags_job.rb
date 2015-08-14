@@ -5,7 +5,7 @@ class GetTagsJob < ActiveJob::Base
     current_article = Article.find(args.at(0))
     title = current_article.title
     content = current_article.content
-    open_calais_response = OpenCalaisClient.client.enrich(title + content)
+    open_calais_response = OpenCalaisClient.client.enrich("#{title}\n#{content}")
     current_article.tags = single_score_hash(open_calais_response.tags)
     current_article.locations = single_score_hash(open_calais_response.locations)
     current_article.topics = single_score_hash(open_calais_response.topics)
@@ -23,23 +23,13 @@ class GetTagsJob < ActiveJob::Base
     current_user = User.first
     attrs = Article.prediction_fields
     attrs.each do |attr|
-      if attr == 'author'
-        author = current_article.author
-        current_value = current_user.all_tags[attr][author]
-        if current_value.nil?
-          current_user.all_tags[attr][author] = 1
-        else
-          current_user.all_tags[attr][author] = current_value + 1
+      if Article.array_fields.include?(attr)
+        current_article.most_likely(attr).each do |a| # TODO: Fix the most_likely with author (it won't work)
+          current_user.all_tags[attr][a] = (current_user.all_tags[attr][a] || 0) + 1
         end
       else
-        current_article.most_likely(attr).each do |a| # TODO: Fix the most_likely with author (it won't work)
-          current_value = current_user.all_tags[attr][a]
-          if current_value.nil?
-            current_user.all_tags[attr][a] = 1
-          else
-            current_user.all_tags[attr][a] = current_value + 1
-          end
-        end
+        attr_value = current_article.public_send(attr.to_sym)
+        current_user.all_tags[attr][attr_value] = (current_user.all_tags[attr][attr_value] || 0) + 1
       end
     end
     current_user.save

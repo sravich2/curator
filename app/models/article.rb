@@ -56,7 +56,7 @@ class Article < ActiveRecord::Base
     user_like_prob = Like.count.to_f / Article.count
     user_likes = Like.count.to_f
     probs = {}
-    attrs = ['tags', 'topics', 'entities']
+    attrs = ['tags', 'topics', 'entities'] # Fix author with most_likely
     attrs.each do |attr|
       article_like_score = 1.to_f
       article_dislike_score = 1.to_f
@@ -88,6 +88,10 @@ class Article < ActiveRecord::Base
 
   def self.prediction_fields
     %w(tags topics entities author)
+  end
+
+  def self.array_fields
+    %w(tags topics entities)
   end
 
 end
