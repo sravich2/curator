@@ -1,8 +1,8 @@
 desc "Deletes everything in DB and resets"
 task :reset do
-  User.delete_all
-  Feed.delete_all
-  Article.delete_all
+  Rake::Task['db:drop'].invoke
+  Rake::Task['db:create'].invoke
+  Rake::Task['db:migrate'].invoke
   User.create(:oauth_token => ENV["OAUTH_TOKEN"])
   User.first.populate_feeds
 end

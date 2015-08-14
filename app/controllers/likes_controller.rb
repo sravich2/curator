@@ -7,15 +7,25 @@ class LikesController < ApplicationController
       current_article = Article.find(a_id)
       current_user = User.first
 
-      attrs = ['tags', 'topics', 'entities']
+      attrs = Article.prediction_fields
 
       attrs.each do |attr|
-        current_article.most_likely(attr.to_sym).each do |a|
-          current_value = current_user.liked_tags[attr][a]
+        if attr == 'author'
+          author = current_article.author
+          current_value = current_user.liked_tags[attr][author]
           if current_value.nil?
-            current_user.liked_tags[attr][a] = 1
+            current_user.liked_tags[attr][author] = 1
           else
-            current_user.liked_tags[attr][a] = current_value + 1
+            current_user.liked_tags[attr][author] = current_value + 1
+          end
+        else
+          current_article.most_likely(attr.to_sym).each do |a|
+            current_value = current_user.liked_tags[attr][a]
+            if current_value.nil?
+              current_user.liked_tags[attr][a] = 1
+            else
+              current_user.liked_tags[attr][a] = current_value + 1
+            end
           end
         end
       end
