@@ -3,8 +3,11 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.text :oauth_token
 
-      t.text :all_tags
-      t.text :liked_tags
+      t.text :article_fields
+      t.text :article_likes
+      t.text :movie_fields
+      t.text :movie_likes
+
       t.timestamps null: false
     end
   end

@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :liked_articles, through: :likes, source: :article
 
-  serialize :all_tags, JSON
-  serialize :liked_tags, JSON
+  serialize :article_fields, JSON
+  serialize :article_likes, JSON
+  serialize :movie_fields, JSON
+  serialize :movie_likes, JSON
 
   before_create :initialize_fields
 
@@ -49,15 +51,19 @@ class User < ActiveRecord::Base
   private
 
   def initialize_fields
-    fields_to_initialize = [:all_tags, :liked_tags]
+    types = %w(article movie)
 
-    fields_to_initialize.each do |f|
-      hash = {}
-      Article.prediction_fields.each do |pf|
-        hash[pf] = {}
+    types.each do |t|
+      %w(fields likes).each do |f|
+        hash = {}
+        Object.const_get(t.capitalize).prediction_fields.each do |pf| # Const_get converts 'Article' to class Article
+          hash[pf] = {}
+        end
+        write_attribute("#{t}_#{f}".to_sym, hash)
       end
-      write_attribute(f, hash)
     end
+
+
   end
 
   def parse_feed(feedlr_collection)

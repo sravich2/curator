@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717061925) do
+ActiveRecord::Schema.define(version: 20150816100139) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "feedly_id"
@@ -57,6 +57,22 @@ ActiveRecord::Schema.define(version: 20150717061925) do
   add_index "likes", ["article_id"], name: "index_likes_on_article_id"
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
+  create_table "movies", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "tmdb_id"
+    t.text     "genres"
+    t.string   "overview"
+    t.text     "cast"
+    t.string   "director"
+    t.date     "release_date"
+    t.float    "popularity"
+    t.float    "vote_average"
+    t.integer  "vote_count"
+    t.text     "plot_keywords"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "feed_id"
@@ -70,10 +86,12 @@ ActiveRecord::Schema.define(version: 20150717061925) do
 
   create_table "users", force: :cascade do |t|
     t.text     "oauth_token"
-    t.text     "all_tags"
-    t.text     "liked_tags"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "article_fields"
+    t.text     "article_likes"
+    t.text     "movie_fields"
+    t.text     "movie_likes"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
 end

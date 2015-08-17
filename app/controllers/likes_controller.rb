@@ -12,11 +12,11 @@ class LikesController < ApplicationController
       attrs.each do |attr|
         if Article.array_fields.include?(attr)
           current_article.most_likely(attr.to_sym).each do |a|
-            current_user.liked_tags[attr][a] = (current_user.liked_tags[attr][a] || 0) + 1
+            current_user.article_likes[attr][a] = (current_user.article_likes[attr][a] || 0) + 1
           end
         else
           attr_value = current_article.public_send(attr.to_sym)
-          current_user.liked_tags[attr][attr_value] = (current_user.liked_tags[attr][attr_value] || 0) + 1
+          current_user.article_likes[attr][attr_value] = (current_user.article_likes[attr][attr_value] || 0) + 1
         end
       end
       current_user.save

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GetTagsJobJobTest < ActiveJob::TestCase
+class MovieTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
