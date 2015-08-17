@@ -5,6 +5,10 @@ class Movie < ActiveRecord::Base
   serialize :genres, JSON
 
   def self.prediction_fields
-    %w(plot_keywords cast director)
+    %w(plot_keywords cast director genres)
+  end
+
+  def self.array_fields
+    %w(plot_keywords cast genres)
   end
 end
