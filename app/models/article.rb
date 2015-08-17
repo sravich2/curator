@@ -60,10 +60,10 @@ class Article < ActiveRecord::Base
     attrs.each do |attr|
       article_like_score = 1.to_f
       article_dislike_score = 1.to_f
-      familiar_attr_set = self.most_likely(attr.to_sym).select { |i| current_user.all_tags[attr].has_key?(i) && current_user.all_tags[attr][i] > 0 }
+      familiar_attr_set = self.most_likely(attr.to_sym).select { |i| current_user.article_fields[attr].has_key?(i) && current_user.article_fields[attr][i] > 0 }
       at_least_one_liked = false
       familiar_attr_set.each do |a|
-        attr_liked_count = current_user.liked_tags[attr][a]
+        attr_liked_count = current_user.article_likes[attr][a]
         if attr_liked_count.nil?
           cond_prob = 1 / user_likes
         else
