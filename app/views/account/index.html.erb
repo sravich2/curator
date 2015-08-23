@@ -4,7 +4,7 @@
   <ul class="list-group">
     <% Article.all.each do |a| %>
         <a href=<%= a.readability_url %> class = "list-group-item"><div class = "article-title"><%= a.title %>
-        <% a.topics.each do |topic, _| %>
+        <% a.topics.keys.each do |topic| %>
             <span class="topic-label label label-default pull-right"><%= topic %></span>
         <% end %></div>
         Tags: <%= a.tags.keys.join(', ') %>
