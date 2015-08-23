@@ -3,7 +3,7 @@
 <div class="articles-container">
   <ul class="list-group">
     <% Article.all.each do |a| %>
-        <a href=<%= a.readability_url %> class = "list-group-item"><div class = "article-title"><%= a.title %>
+        <%= link_to a.readability_url, class:  "list-group-item" do %><div class = "article-title"><%= a.title %>
         <% a.topics.keys.each do |topic| %>
             <span class="topic-label label label-default pull-right"><%= topic %></span>
         <% end %></div>
@@ -12,7 +12,7 @@
         <br>
         <%# image_tag(curr_feed.favicon_url, alt: curr_feed.title, class: 'favicon') %>
         <div class = "feed-title"><%= curr_feed.title %></div>
-        </a>
+        <% end %>
     <% end %>
   </ul>
 </div>

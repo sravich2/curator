@@ -16,16 +16,18 @@ ActiveRecord::Schema.define(version: 20150713112503) do
   create_table "articles", force: :cascade do |t|
     t.string   "feedly_id"
     t.string   "title"
+    t.string   "author"
     t.text     "content"
     t.string   "url"
     t.text     "topics"
     t.text     "tags"
+    t.text     "entities"
+    t.text     "locations"
+    t.datetime "published"
     t.integer  "feed_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "readability_url"
-    t.string   "logo_url"
-    t.string   "favicon_url"
   end
 
   create_table "feeds", force: :cascade do |t|
