@@ -27,8 +27,11 @@
 }
 
 .article-content {
-    font-size: 1.7rem;
     text-align: justify;
+}
+
+p {
+    font-size: 0.9em !important;
 }
 
 .settings > * > *{

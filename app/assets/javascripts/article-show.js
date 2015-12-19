@@ -25,7 +25,7 @@ $(document).ready(function() {
 
     $('.font-size-settings').on('click', '*', function() {
         var action = $(this).attr('font-size-action');
-        var currentSetting = $('.article-content').css('font-size');
+        var currentSetting = $('p').css('font-size');
         var newSetting;
         if (action == '+') {
             newSetting = (parseInt(currentSetting) + 1) + 'px';
@@ -34,7 +34,7 @@ $(document).ready(function() {
             newSetting = (parseInt(currentSetting) - 1) + 'px';
         }
         var font_size_css_class = {'font-size': newSetting};
-        $('.article-content').css(font_size_css_class);
+        $('p').attr('style', 'font-size: '.concat(newSetting).concat(' !important') );
     });
 
     $('.background-settings').on('click', '*', function() {

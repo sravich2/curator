@@ -46,7 +46,15 @@ class Article < ActiveRecord::Base
     content_html_doc.search('//ul').each do |node|
       node.remove
     end
-    content_html_doc.to_html
+
+    original_html = Nokogiri::HTML(open(self.url).read)
+    css_lines = original_html.css('link[href$=css]')
+
+    final_html = '<html><head>'
+    css_lines.each do |line|
+      final_html = final_html + line.to_html
+    end
+    final_html = final_html + "</head><body>#{content_html_doc.to_html}</body></html>"
   end
 
   def calculate_like_probability
