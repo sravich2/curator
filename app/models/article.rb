@@ -64,22 +64,24 @@ class Article < ActiveRecord::Base
     user_like_prob = Like.count.to_f / Article.count
     user_likes = Like.count.to_f
     probs = {}
-    attrs = ['tags', 'topics', 'entities']
+    attrs = ['tags', 'topics', 'entities'] # Fix author with most_likely
     attrs.each do |attr|
       article_like_score = 1.to_f
       article_dislike_score = 1.to_f
-      familiar_attr_set = self.most_likely(attr.to_sym).select { |i| current_user.all_tags[attr].has_key?(i) && current_user.all_tags[attr][i] > 1 }
+      familiar_attr_set = self.most_likely(attr.to_sym).select { |i| current_user.all_tags[attr].has_key?(i) && current_user.all_tags[attr][i] > 0 }
+      at_least_one_liked = false
       familiar_attr_set.each do |a|
         attr_liked_count = current_user.liked_tags[attr][a]
         if attr_liked_count.nil?
           cond_prob = 1 / user_likes
         else
           cond_prob = attr_liked_count / user_likes
+          at_least_one_liked = true
         end
-        article_like_score = article_like_score* cond_prob
+        article_like_score = article_like_score*cond_prob
         article_dislike_score = article_dislike_score * (1 - cond_prob)
       end
-      if familiar_attr_set.blank?
+      if familiar_attr_set.blank? || !at_least_one_liked
         article_like_score = 0
       else
         article_like_score = article_like_score * [user_like_prob, 1 - user_like_prob].max
@@ -88,6 +90,16 @@ class Article < ActiveRecord::Base
       probs[attr] = article_like_score*100
     end
     probs
+  end
+
+  private
+
+  def self.prediction_fields
+    %w(tags topics entities author)
+  end
+
+  def self.array_fields
+    %w(tags topics entities)
   end
 
 end
