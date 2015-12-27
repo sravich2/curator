@@ -154,6 +154,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shareable (1.1.4)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     sidekiq (3.4.1)
       celluloid (~> 0.16.0)
       connection_pool (>= 2.1.1)
@@ -207,6 +210,7 @@ DEPENDENCIES
   ruby-readability
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shareable
   sidekiq
   spring
   sqlite3

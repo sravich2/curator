@@ -14,7 +14,7 @@
     </div>
     <div class="length-settings col-md-2">
       <input type="image" length-action='+' src="https://cdn4.iconfinder.com/data/icons/epic-outlines/30/enlarge_horizontal-128.png">
-      <input type="image" length-action='-' src="https://cdn3.iconfinder.com/data/icons/arrow-new/64/arrows_shrink_horizontal1-512.png">
+      <input type="image" length-action='-' src="https://cdn4.iconfinder.com/data/icons/epic-outlines/30/shrink_horizontal-512.png">
     </div>
     <div class="font-size-settings col-md-2">
       <input type="image" font-size-action="+" src="http://icons.iconarchive.com/icons/icons8/ios7/512/Arrows-Up-4-icon.png">
@@ -26,6 +26,10 @@
       <div class = "background-setting-black" bg-color-value="black" style="cursor: pointer;">a</div>
       <div class = "background-setting-lightyellow" bg-color-value="lightyellow" style="cursor: pointer;">a</div>
     </div>
+  </div>
+  <div class = 'social row'>
+    <share-button class = 'share-button'></share-button>
+    <%= tag "div", id: 'url', data: {:url => @article.url} %>
   </div>
   </div>
 <div class = "container article-container">
@@ -40,6 +44,7 @@
       <%= @html.try(:html_safe) %>
     </div>
   </div>
+
 </div>
 </body>
 </html>
